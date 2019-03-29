@@ -4,13 +4,34 @@
 #include "hashtable.h"
 #include "ex2.h"
 
+
+int getPath() {
+
+
+}
+
 char **reconstruct_trip(Ticket **tickets, int length)
 {
   HashTable *ht = create_hash_table(16);
   char **route = malloc(length * sizeof(char *));
 
   // YOUR CODE HERE
+  
+  // populate hash table with the 
+  for (int i=0; i < length; i++) {
+    hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
+  }
 
+  Ticket *head = malloc(sizeof(Ticket));
+  int done = 0;
+  
+  head = hash_table_retrieve(ht, "NONE");
+
+  for (int i=0; i <length; i++){
+    route[i] = head;
+    head = hash_table_retrieve(ht, route[i]);
+  }
+  
   return route;
 }
 
