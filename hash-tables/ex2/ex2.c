@@ -17,16 +17,21 @@ char **reconstruct_trip(Ticket **tickets, int length)
 
   // YOUR CODE HERE
   
-  // populate hash table with the 
+  // Populate hash table with the source as the key 
+  // and the destination as the value
   for (int i=0; i < length; i++) {
     hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
   }
 
+  // Set head vriable to the hash value with the key `NONE`
+  // which is the starting destination of the trip
   Ticket *head = malloc(sizeof(Ticket));
   int done = 0;
-  
   head = hash_table_retrieve(ht, "NONE");
 
+  // Populate **route by setting the index to the head
+  // and setting the head to the heads 
+  // value in the has table as the key
   for (int i=0; i <length; i++){
     route[i] = head;
     head = hash_table_retrieve(ht, route[i]);
