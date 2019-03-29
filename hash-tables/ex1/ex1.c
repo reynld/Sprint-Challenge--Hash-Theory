@@ -169,15 +169,21 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 
   Answer *ans = malloc(sizeof(Answer));
   
+  // Store weight in hash table where the key is the wieght
+  // and the value is the difference with the limit
   for (int i=0; i < length; i++) {
     // printf("%i : %i\n", weights[i], limit-weights[i]);
     hash_table_insert(ht, weights[i], limit-weights[i]);
   }
 
+  // Loops through the values and checks if the 
+  // difference exists is the hashtable
   for (int i=0; i < length; i++) {
     int diff = hash_table_retrieve(ht, weights[i]);
     int value = hash_table_retrieve(ht, diff);
 
+    // If the differece exist return the index of the current loop
+    // and the index of the difference value
     if (value != -1) {
       int value_index;
 
