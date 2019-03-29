@@ -23,10 +23,9 @@ char **reconstruct_trip(Ticket **tickets, int length)
     hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
   }
 
-  // Set head vriable to the hash value with the key `NONE`
+  // Set head variable to the hash value with the key `NONE`
   // which is the starting destination of the trip
   Ticket *head = malloc(sizeof(Ticket));
-  int done = 0;
   head = hash_table_retrieve(ht, "NONE");
 
   // Populate **route by setting the index to the head
